@@ -28,10 +28,6 @@
                 Clicked="OnClientesClicked"
                 HorizontalOptions="Fill" />
 
-            <Button
-                Text="Gestión de Empleados"
-                Clicked="OnEmpleadosClicked"
-                HorizontalOptions="Fill" />
 
             <Button
                 Text="Gestión de Equipos"

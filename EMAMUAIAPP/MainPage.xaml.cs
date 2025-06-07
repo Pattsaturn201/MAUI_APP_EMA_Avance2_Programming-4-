@@ -12,17 +12,12 @@ namespace EMAMUAIAPP
 
         private async void OnClientesClicked(object sender, EventArgs e)
         {
-
-        }
-
-        private async void OnEmpleadosClicked(object sender, EventArgs e)
-        {
-
+            await Navigation.PushAsync(new ClientesPage());
         }
 
         private async void OnEquiposClicked(object sender, EventArgs e)
         {
-
+            await Navigation.PushAsync(new EquiposPage());
         }
 
         private async void OnOrdenesClicked(object sender, EventArgs e)

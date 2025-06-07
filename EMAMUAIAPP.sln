@@ -5,6 +5,8 @@ VisualStudioVersion = 17.13.35919.96 d17.13
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EMAMUAIAPP", "EMAMUAIAPP\EMAMUAIAPP.csproj", "{10A95310-FC62-43C1-B427-E2FB52B9079B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "APISEMA", "APIS\APISEMA\APISEMA.csproj", "{26694C05-F0FB-47FC-86FE-AF6451C28B58}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{10A95310-FC62-43C1-B427-E2FB52B9079B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{10A95310-FC62-43C1-B427-E2FB52B9079B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{10A95310-FC62-43C1-B427-E2FB52B9079B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{26694C05-F0FB-47FC-86FE-AF6451C28B58}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{26694C05-F0FB-47FC-86FE-AF6451C28B58}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{26694C05-F0FB-47FC-86FE-AF6451C28B58}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{26694C05-F0FB-47FC-86FE-AF6451C28B58}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -45,7 +45,7 @@
 
             <Button
                 Text="Gestión de Ordenes de Trabajo"
-                Clicked="OnPagosClicked"
+                Clicked="OnOrdenesClicked"
                 HorizontalOptions="Fill" />
 
 

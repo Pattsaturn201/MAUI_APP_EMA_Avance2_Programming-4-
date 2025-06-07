@@ -25,15 +25,16 @@ namespace EMAMUAIAPP
 
         }
 
-        private async void OnPagosClicked(object sender, EventArgs e)
-        {
-
-        }
-
         private async void OnOrdenesClicked(object sender, EventArgs e)
         {
-
+            await Navigation.PushAsync(new OrdenesPage());
         }
+
+        private async void OnPagosClicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new PagosPage());
+        }
+
     }
 }
 

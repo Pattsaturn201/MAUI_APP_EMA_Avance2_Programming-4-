@@ -1,25 +1,39 @@
-﻿namespace EMAMUAIAPP
+﻿using System;
+using Microsoft.Maui.Controls;
+
+namespace EMAMUAIAPP
 {
     public partial class MainPage : ContentPage
     {
-        int count = 0;
-
         public MainPage()
         {
             InitializeComponent();
         }
 
-        private void OnCounterClicked(object sender, EventArgs e)
+        private async void OnClientesClicked(object sender, EventArgs e)
         {
-            count++;
 
-            if (count == 1)
-                CounterBtn.Text = $"Clicked {count} time";
-            else
-                CounterBtn.Text = $"Clicked {count} times";
+        }
 
-            SemanticScreenReader.Announce(CounterBtn.Text);
+        private async void OnEmpleadosClicked(object sender, EventArgs e)
+        {
+
+        }
+
+        private async void OnEquiposClicked(object sender, EventArgs e)
+        {
+
+        }
+
+        private async void OnPagosClicked(object sender, EventArgs e)
+        {
+
+        }
+
+        private async void OnOrdenesClicked(object sender, EventArgs e)
+        {
+
         }
     }
-
 }
+

@@ -1,37 +1,55 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="EMAMUAIAPP.MainPage">
+             x:Class="EMAMUAIAPP.MainPage"
+             Title="Inicio">
 
     <ScrollView>
-        <VerticalStackLayout
-            Padding="30,0"
-            Spacing="25">
+        <VerticalStackLayout Padding="30,0" Spacing="25">
+
             <Image
                 Source="dotnet_bot.png"
                 HeightRequest="185"
                 Aspect="AspectFit"
-                SemanticProperties.Description="dot net bot in a hovercraft number nine" />
+                SemanticProperties.Description="Mascota .NET" />
 
             <Label
                 Text="E.M.A"
                 Style="{StaticResource Headline}"
-                
+                HorizontalOptions="Center" />
 
             <Label
-                Text="Bienvenido, selecciona una opcion disponible."
+                Text="Bienvenido, selecciona una opción disponible:"
                 Style="{StaticResource SubHeadline}"
-                
+                HorizontalOptions="Center" />
 
             <Button
-                x:Name="CounterBtn"
-                Text="Click me" 
-                SemanticProperties.Hint="Counts the number of times you click"
-                Clicked="OnCounterClicked"
+                Text="Gestión de Clientes"
+                Clicked="OnClientesClicked"
                 HorizontalOptions="Fill" />
-                
-             
+
+            <Button
+                Text="Gestión de Empleados"
+                Clicked="OnEmpleadosClicked"
+                HorizontalOptions="Fill" />
+
+            <Button
+                Text="Gestión de Equipos"
+                Clicked="OnEquiposClicked"
+                HorizontalOptions="Fill" />
+
+            <Button
+                Text="Gestión de Pagos"
+                Clicked="OnPagosClicked"
+                HorizontalOptions="Fill" />
+
+            <Button
+                Text="Gestión de Ordenes de Trabajo"
+                Clicked="OnPagosClicked"
+                HorizontalOptions="Fill" />
+
+
+
         </VerticalStackLayout>
     </ScrollView>
-
 </ContentPage>

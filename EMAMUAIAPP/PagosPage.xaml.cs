@@ -1,34 +1,23 @@
-using System.Collections.ObjectModel;
+using EMAMUAIAPP.Services;
+using EMAMUAIAPP.Models;
 
 namespace EMAMUAIAPP
 {
     public partial class PagosPage : ContentPage
     {
-        public ObservableCollection<Pago> Pagos { get; set; }
+        private readonly PagosServices _pagosService;
 
-        public PagosPage()
+        public PagosPage(PagosServices pagosService)
         {
             InitializeComponent();
-
-            Pagos = new ObservableCollection<Pago>
-            {
-                new Pago { Cliente = "Juan Pérez", Monto = "$150.00", Fecha = "06/06/2025" },
-                new Pago { Cliente = "Ana Gómez", Monto = "$200.00", Fecha = "05/06/2025" }
-            };
-
-            PagosCollectionView.ItemsSource = Pagos;
+            _pagosService = pagosService;
         }
 
-        private async void OnAgregarPagoClicked(object sender, EventArgs e)
+        protected override async void OnAppearing()
         {
-            await DisplayAlert("Registrar Pago", "Aquí se abriría un formulario para registrar un nuevo pago.", "OK");
+            base.OnAppearing();
+            var pagos = await _pagosService.ObtenerTodosAsync();
+            // Usa la lista de pagos en la UI
         }
-    }
-
-    public class Pago
-    {
-        public string Cliente { get; set; }
-        public string Monto { get; set; }
-        public string Fecha { get; set; }
     }
 }

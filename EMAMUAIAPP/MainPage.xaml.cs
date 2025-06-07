@@ -35,6 +35,7 @@ namespace EMAMUAIAPP
             await Navigation.PushAsync(new PagosPage());
         }
 
+
     }
 }
 

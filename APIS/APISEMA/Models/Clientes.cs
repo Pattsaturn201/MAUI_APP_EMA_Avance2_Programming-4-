@@ -21,7 +21,6 @@ namespace APISEMA.Models
         [StringLength(200)]
         public string Direccion { get; set; }
         [Required]
-        public string MetodoPago { get; set; }
-
+        public List<string> MetodosDePago { get; set; } = new();
     }
 }

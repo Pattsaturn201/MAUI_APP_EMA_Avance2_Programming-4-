@@ -31,6 +31,7 @@ namespace APISEMA.Models
         public string Observaciones { get; set; }
 
         [StringLength(20)]
-        public string Estado { get; set; }
+        [Required]
+        public EstadoDeOrden Estado { get; set; }
     }
 }

@@ -7,20 +7,32 @@
     Shell.FlyoutBehavior="Flyout"
     Title="EMAMUAIAPP">
 
+   
     <ShellContent
-        Title="Home"
+        Title="Inicio"
         ContentTemplate="{DataTemplate local:MainPage}"
         Route="MainPage" />
 
+   
     <ShellContent
-    Title="Clientes"
-    ContentTemplate="{DataTemplate local:ClientesPage}"
-    Route="ClientesPage" />
-
+        Title="Clientes"
+        ContentTemplate="{DataTemplate local:ClientesPage}"
+        Route="ClientesPage" />
 
     <ShellContent
-        Title="Formulario"
+        Title="Formulario Cliente"
         ContentTemplate="{DataTemplate local:ClienteFormularioPage}"
         Route="ClienteFormularioPage" />
+
+    
+    <ShellContent
+        Title="Equipos"
+        ContentTemplate="{DataTemplate local:EquiposPage}"
+        Route="EquiposPage" />
+
+    <ShellContent
+        Title="Formulario Equipo"
+        ContentTemplate="{DataTemplate local:EquipoFormularioPage}"
+        Route="EquipoFormularioPage" />
 </Shell>
 

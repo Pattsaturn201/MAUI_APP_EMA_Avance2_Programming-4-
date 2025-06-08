@@ -76,6 +76,9 @@
 	  <MauiXaml Update="ClientesPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="EquipoFormularioPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="EquiposPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>

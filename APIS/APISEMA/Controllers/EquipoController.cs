@@ -6,7 +6,7 @@ namespace APISEMA.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class EquipoController : ControllerBase
+    public class EquiposController : ControllerBase
     {
         private readonly EquipoRepository _repo = new();
 

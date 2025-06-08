@@ -12,7 +12,12 @@ namespace EMAMUAIAPP
         public ClientesPage()
         {
             InitializeComponent();
-            CargarClientes();
+        }
+
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            CargarClientes(); 
         }
 
         private async void CargarClientes()
@@ -28,7 +33,7 @@ namespace EMAMUAIAPP
 
         private async void OnAgregarClienteClicked(object sender, EventArgs e)
         {
-            await DisplayAlert("Agregar Cliente", "Aquí se mostraría un formulario para agregar un nuevo cliente.", "OK");
+            await Shell.Current.GoToAsync(nameof(ClienteFormularioPage));
         }
 
         private async void OnEditarClienteClicked(object sender, EventArgs e)
@@ -36,10 +41,16 @@ namespace EMAMUAIAPP
             var cliente = (sender as Button)?.BindingContext as Clientes;
             if (cliente != null)
             {
-                await DisplayAlert("Editar Cliente", $"Editar datos de {cliente.NombreCompleto}", "OK");
-                // Aquí puedes abrir una nueva página para editar los datos
+                var navigationParams = new Dictionary<string, object>
+        {
+            { "cliente", cliente }
+        };
+
+                await Shell.Current.GoToAsync($"{nameof(ClienteFormularioPage)}", navigationParams);
             }
         }
+
+
 
         private async void OnEliminarClienteClicked(object sender, EventArgs e)
         {

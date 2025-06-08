@@ -1,54 +1,51 @@
-﻿using EMAMUAIAPP.Models;
-using System.Net.Http.Json;
+﻿using System.Net.Http;
+using System.Text;
+using System.Text.Json;
+using EMAMUAIAPP.Models;
 
 namespace EMAMUAIAPP.Services
 {
     public class ClientesServices
     {
         private readonly HttpClient _httpClient;
+        private readonly string _baseUrl = "https://localhost:7153/api";
 
         public ClientesServices()
         {
-            // Cambia esta URL si tu API usa un puerto diferente
-            _httpClient = new HttpClient
-            {
-                BaseAddress = new Uri("https://localhost:7153") // <-- Ajusta si tu API corre en otro puerto
-            };
+            _httpClient = new HttpClient();
         }
 
-        // Obtener todos los clientes
         public async Task<List<Clientes>> ObtenerClientesAsync()
         {
-            var response = await _httpClient.GetAsync("/api/clientes");
+            var response = await _httpClient.GetAsync($"{_baseUrl}/Clientes");
+            response.EnsureSuccessStatusCode();
 
-            if (response.IsSuccessStatusCode)
-            {
-                var clientes = await response.Content.ReadFromJsonAsync<List<Clientes>>();
-                return clientes ?? new List<Clientes>();
-            }
-
-            return new List<Clientes>();
+            var json = await response.Content.ReadAsStringAsync();
+            return JsonSerializer.Deserialize<List<Clientes>>(json, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
         }
 
-        // Crear un nuevo cliente
-        public async Task<bool> CrearClienteAsync(Clientes nuevoCliente)
+        public async Task CrearClienteAsync(Clientes cliente)
         {
-            var response = await _httpClient.PostAsJsonAsync("/api/clientes", nuevoCliente);
-            return response.IsSuccessStatusCode;
+            var json = JsonSerializer.Serialize(cliente);
+            var content = new StringContent(json, Encoding.UTF8, "application/json");
+
+            var response = await _httpClient.PostAsync($"{_baseUrl}/Clientes", content);
+            response.EnsureSuccessStatusCode();
         }
 
-        // Actualizar cliente
-        public async Task<bool> ActualizarClienteAsync(int id, Clientes cliente)
+        public async Task ActualizarClienteAsync(int id, Clientes cliente)
         {
-            var response = await _httpClient.PutAsJsonAsync($"/api/clientes/{id}", cliente);
-            return response.IsSuccessStatusCode;
+            var json = JsonSerializer.Serialize(cliente);
+            var content = new StringContent(json, Encoding.UTF8, "application/json");
+
+            var response = await _httpClient.PutAsync($"{_baseUrl}/Clientes/{id}", content);
+            response.EnsureSuccessStatusCode();
         }
 
-        // Eliminar cliente
-        public async Task<bool> EliminarClienteAsync(int id)
+        public async Task EliminarClienteAsync(int id)
         {
-            var response = await _httpClient.DeleteAsync($"/api/clientes/{id}");
-            return response.IsSuccessStatusCode;
+            var response = await _httpClient.DeleteAsync($"{_baseUrl}/Clientes/{id}");
+            response.EnsureSuccessStatusCode();
         }
     }
 }

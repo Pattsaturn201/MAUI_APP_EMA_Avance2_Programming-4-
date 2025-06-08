@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="EMAMUAIAPP.ClienteFormularioPage"
+             Title="Cliente">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="15">
+            <Entry x:Name="NombreCompletoEntry" Placeholder="Nombre completo" />
+            <Entry x:Name="ApellidoCompletoEntry" Placeholder="Apellido completo" />
+            <Entry x:Name="CorreoEntry" Placeholder="Correo electrónico" Keyboard="Email" />
+            <Entry x:Name="TelefonoEntry" Placeholder="Teléfono" Keyboard="Telephone" />
+            <Editor x:Name="DireccionEntry" Placeholder="Dirección" AutoSize="TextChanges" HeightRequest="80" />
+            <Entry x:Name="MetodosPagoEntry" Placeholder="Métodos de pago (separados por coma)" />
+
+            <Button Text="Guardar" Clicked="OnGuardarClicked" />
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
+

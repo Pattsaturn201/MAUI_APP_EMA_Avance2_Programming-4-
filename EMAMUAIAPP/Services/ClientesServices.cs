@@ -47,5 +47,15 @@ namespace EMAMUAIAPP.Services
             var response = await _httpClient.DeleteAsync($"{_baseUrl}/Clientes/{id}");
             response.EnsureSuccessStatusCode();
         }
+
+        public async Task<List<Clientes>> BuscarClientesAsync(string termino)
+        {
+            var response = await _httpClient.GetAsync($"{_baseUrl}/Clientes/buscar?termino={Uri.EscapeDataString(termino)}");
+            response.EnsureSuccessStatusCode();
+
+            var json = await response.Content.ReadAsStringAsync();
+            return JsonSerializer.Deserialize<List<Clientes>>(json, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
+        }
+
     }
 }

@@ -65,5 +65,22 @@ namespace EMAMUAIAPP
                 }
             }
         }
+
+        private async void OnBusquedaTextChanged(object sender, TextChangedEventArgs e)
+        {
+            string termino = e.NewTextValue;
+            if (string.IsNullOrWhiteSpace(termino))
+            {
+                CargarClientes();
+            }
+            else
+            {
+                var resultados = await _clientesService.BuscarClientesAsync(termino);
+                Clientes.Clear();
+                foreach (var cliente in resultados)
+                    Clientes.Add(cliente);
+            }
+        }
+
     }
 }

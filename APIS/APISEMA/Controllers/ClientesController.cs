@@ -10,6 +10,19 @@ namespace APISEMA.Controllers
     {
         private readonly ClientesRepository _repo = new();
 
+
+        //Search
+        [HttpGet("buscar")]
+        public ActionResult<List<Clientes>> Buscar([FromQuery] string termino)
+        {
+            if (string.IsNullOrWhiteSpace(termino))
+                return BadRequest("El término de búsqueda es obligatorio.");
+
+            var resultados = _repo.BuscarClientes(termino);
+            return Ok(resultados);
+        }
+
+
         // GET
         [HttpGet]
         public ActionResult<List<Clientes>> Get()

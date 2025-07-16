@@ -2,45 +2,55 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="EMAMUAIAPP.EquiposPage"
-
              Title="Equipos">
 
-    <VerticalStackLayout Padding="20" Spacing="15">
+    <Grid RowDefinitions="Auto, Auto, *" Padding="20" RowSpacing="15">
+
+        <!-- Título -->
         <Label Text="Equipos Registrados"
                FontSize="24"
-               HorizontalOptions="Center" />
+               HorizontalOptions="Center"
+               Grid.Row="0" />
 
+        <!-- Botón fijo arriba -->
         <Button Text="Agregar Equipo"
                 Clicked="OnAgregarEquipoClicked"
                 BackgroundColor="#2196F3"
-                TextColor="White" />
+                TextColor="White"
+                Grid.Row="1" />
 
-        <CollectionView x:Name="EquiposCollectionView">
-            <CollectionView.ItemTemplate>
-                <DataTemplate>
-                    <Frame BorderColor="LightGray" Padding="10" Margin="5">
-                        <VerticalStackLayout Spacing="5">
-                            <Label Text="{Binding Nombre}" FontAttributes="Bold" FontSize="18" />
-                            <Label Text="{Binding Marca}" />
-                            <Label Text="{Binding Modelo}" />
-                            <Label Text="{Binding Serial}" />
-                            <Label Text="{Binding FechaAdquisicion, StringFormat='Adquirido: {0:dd/MM/yyyy}'}" />
-                            <Label Text="{Binding FechaBaja, StringFormat='Baja: {0:dd/MM/yyyy}'}" />
+        <!-- ScrollView solo para los equipos -->
+        <ScrollView Grid.Row="2">
+            <VerticalStackLayout Spacing="10">
+                <CollectionView x:Name="EquiposCollectionView"
+                                ItemsLayout="VerticalList">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Frame BorderColor="LightGray" Padding="10" Margin="5">
+                                <VerticalStackLayout Spacing="5">
+                                    <Label Text="{Binding Nombre}" FontAttributes="Bold" FontSize="18" />
+                                    <Label Text="{Binding Marca}" />
+                                    <Label Text="{Binding Modelo}" />
+                                    <Label Text="{Binding Serial}" />
+                                    <Label Text="{Binding FechaAdquisicion, StringFormat='Adquirido: {0:dd/MM/yyyy}'}" />
+                                    <Label Text="{Binding FechaBaja, StringFormat='Baja: {0:dd/MM/yyyy}'}" />
 
-                            <HorizontalStackLayout Spacing="10" Margin="0,10,0,0">
-                                <Button Text="Editar"
-                                        Clicked="OnEditarEquipoClicked"
-                                        BackgroundColor="#4CAF50"
-                                        TextColor="White"/>
-                                <Button Text="Eliminar"
-                                        Clicked="OnEliminarEquipoClicked"
-                                        BackgroundColor="#F44336"
-                                        TextColor="White"/>
-                            </HorizontalStackLayout>
-                        </VerticalStackLayout>
-                    </Frame>
-                </DataTemplate>
-            </CollectionView.ItemTemplate>
-        </CollectionView>
-    </VerticalStackLayout>
+                                    <HorizontalStackLayout Spacing="10" Margin="0,10,0,0">
+                                        <Button Text="Editar"
+                                                Clicked="OnEditarEquipoClicked"
+                                                BackgroundColor="#4CAF50"
+                                                TextColor="White"/>
+                                        <Button Text="Eliminar"
+                                                Clicked="OnEliminarEquipoClicked"
+                                                BackgroundColor="#F44336"
+                                                TextColor="White"/>
+                                    </HorizontalStackLayout>
+                                </VerticalStackLayout>
+                            </Frame>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </VerticalStackLayout>
+        </ScrollView>
+    </Grid>
 </ContentPage>

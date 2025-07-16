@@ -81,5 +81,17 @@ namespace APISEMA.Repositories
             _clientes.Remove(cliente);
             return true;
         }
+
+        //para busar un cliente
+        public List<Clientes> BuscarClientes(string termino)
+        {
+            termino = termino.ToLower();
+            return _clientes.Where(c =>
+                c.NombreCompleto.ToLower().Contains(termino) ||
+                c.ApellidoCompleto.ToLower().Contains(termino) ||
+                c.Correo.ToLower().Contains(termino)
+            ).ToList();
+        }
+
     }
 }

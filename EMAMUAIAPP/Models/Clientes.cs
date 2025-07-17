@@ -1,36 +1,43 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using SQLite;
 
 namespace EMAMUAIAPP.Models
 {
     public class Clientes
     {
-        [Key]
+        [PrimaryKey, AutoIncrement]
         public int Id { get; set; }
 
-        [Required]
-        [StringLength(50)]
+        [MaxLength(50), NotNull]
         public string NombreCompleto { get; set; }
 
-        [Required]
-        [StringLength(50)]
+        [MaxLength(50), NotNull]
         public string ApellidoCompleto { get; set; }
 
-        [Required]
-        [EmailAddress]
+        [MaxLength(100), NotNull]
         public string Correo { get; set; }
 
-        [Required]
-        [Phone]
+        [MaxLength(20), NotNull]
         public string Telefono { get; set; }
 
-        [StringLength(200)]
+        [MaxLength(200)]
         public string Direccion { get; set; }
 
-        [Required]
-        public List<string> MetodosDePago { get; set; } = new();
+        // Guardamos métodos de pago como texto CSV
+        [MaxLength(200)]
+        public string MetodosPagoCSV { get; set; }
 
-        public string MetodosDePagoString => MetodosDePago != null
-            ? string.Join(", ", MetodosDePago)
-            : string.Empty;
+        // Propiedad no mapeada: convierte CSV a lista
+        [Ignore]
+        public List<string> MetodosDePago
+        {
+            get => string.IsNullOrWhiteSpace(MetodosPagoCSV)
+                ? new List<string>()
+                : MetodosPagoCSV.Split(',').Select(m => m.Trim()).ToList();
+            set => MetodosPagoCSV = string.Join(", ", value);
+        }
+
+        // Propiedad auxiliar para mostrar métodos de pago
+        [Ignore]
+        public string MetodosDePagoString => string.Join(", ", MetodosDePago);
     }
 }

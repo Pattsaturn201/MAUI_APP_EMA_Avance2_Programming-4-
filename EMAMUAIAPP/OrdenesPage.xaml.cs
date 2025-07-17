@@ -34,7 +34,37 @@ public partial class OrdenesPage : ContentPage
     private async void OnAgregarOrdenClicked(object sender, EventArgs e)
     {
 
-        await Shell.Current.GoToAsync(nameof(OrdenFormularioPage));
+        await Shell.Current.GoToAsync("///OrdenFormularioPage");
 
     }
+    private async void OnEditarOrdenClicked(object sender, EventArgs e)
+    {
+        var button = sender as Button;
+        var orden = button?.CommandParameter as OrdenTrabajo;
+
+        if (orden != null)
+        {
+            await Shell.Current.GoToAsync("///OrdenFormularioPage", true, new Dictionary<string, object>
+        {
+            { "OrdenSeleccionada", orden }
+        });
+        }
+    }
+
+    private async void OnEliminarOrdenClicked(object sender, EventArgs e)
+    {
+        var button = sender as Button;
+        var orden = button?.CommandParameter as OrdenTrabajo;
+
+        if (orden != null)
+        {
+            var confirm = await DisplayAlert("Confirmar", $"¿Eliminar la orden de {orden.NombreEquipo}?", "Sí", "No");
+            if (confirm)
+            {
+                await _ordenService.EliminarOrdenAsync(orden.Id);
+                await CargarOrdenes();
+            }
+        }
+    }
+
 }

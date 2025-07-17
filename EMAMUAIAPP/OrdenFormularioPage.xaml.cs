@@ -2,11 +2,24 @@ using EMAMUAIAPP.Models;
 using EMAMUAIAPP.Services;
 
 namespace EMAMUAIAPP;
-
+[QueryProperty(nameof(OrdenSeleccionada), "OrdenSeleccionada")]
 public partial class OrdenFormularioPage : ContentPage
 {
     private readonly OrdenTrabajoService _ordenService = new();
     private OrdenTrabajo ordenExistente;
+
+
+    public OrdenTrabajo OrdenSeleccionada
+    {
+        get => ordenExistente;
+        set
+        {
+            ordenExistente = value;
+            if (ordenExistente != null)
+                CargarDatosExistente();
+        }
+    }
+
 
     public OrdenFormularioPage()
     {
@@ -69,7 +82,8 @@ public partial class OrdenFormularioPage : ContentPage
                 await DisplayAlert("Éxito", "Orden actualizada correctamente.", "OK");
             }
 
-            await Shell.Current.GoToAsync(".."); // Vuelve atrás
+            await Shell.Current.GoToAsync("///OrdenesPage");
+            
         }
 
         catch (HttpRequestException httpEx)

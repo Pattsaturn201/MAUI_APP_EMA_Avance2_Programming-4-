@@ -17,9 +17,18 @@
                 <DataTemplate>
                     <Frame BorderColor="Gray" Padding="10" Margin="5">
                         <VerticalStackLayout>
-                            <Label Text="{Binding Titulo}" FontAttributes="Bold" />
-                            <Label Text="{Binding Descripcion}" FontSize="12" />
-                            <Label Text="{Binding Fecha}" FontSize="10" TextColor="Gray" />
+                            <Label Text="{Binding NombreEquipo}" FontAttributes="Bold" />
+                            <Label Text="{Binding CodigoEquipo}" />
+                            <Label Text="{Binding TipoMantenimiento}" />
+                            <Label Text="{Binding Estado}" />
+                            <Label Text="{Binding FechaIngreso, StringFormat='Ingreso: {0:dd/MM/yyyy}'}" />
+                            <Label Text="{Binding FechaEntrega, StringFormat='Entrega: {0:dd/MM/yyyy}'}" />
+                            <Label Text="{Binding DescripcionProblema}" />
+                            <Label Text="{Binding Observaciones}" />
+                            <HorizontalStackLayout>
+                                <Button Text="Editar" Clicked="OnEditarOrdenClicked" CommandParameter="{Binding}" />
+                                <Button Text="Eliminar" Clicked="OnEliminarOrdenClicked" CommandParameter="{Binding}" BackgroundColor="Red" TextColor="White" />
+                            </HorizontalStackLayout>
                         </VerticalStackLayout>
                     </Frame>
                 </DataTemplate>

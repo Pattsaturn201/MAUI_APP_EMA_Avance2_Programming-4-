@@ -33,7 +33,8 @@ namespace EMAMUAIAPP
 
         private async void OnAgregarClienteClicked(object sender, EventArgs e)
         {
-            await Shell.Current.GoToAsync(nameof(ClienteFormularioPage));
+            await Shell.Current.GoToAsync("///ClienteFormularioPage");
+
         }
 
         private async void OnEditarClienteClicked(object sender, EventArgs e)

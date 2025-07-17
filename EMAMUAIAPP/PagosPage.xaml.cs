@@ -51,9 +51,58 @@ public partial class PagosPage : ContentPage
             Pagos.Add(pago);
     }
 
+    private async void OnEditarPagoClicked(object sender, EventArgs e)
+    {
+        var button = sender as Button;
+        var pago = button?.CommandParameter as Pagos;
+
+        if (pago != null)
+        {
+            // Pasar el pago como parámetro
+            await Shell.Current.GoToAsync("///PagoFormularioPage", new Dictionary<string, object>
+        {
+            { "PagoSeleccionado", pago }
+        });
+        }
+    }
+
+    private async void OnEliminarPagoClicked(object sender, EventArgs e)
+    {
+        var button = sender as Button;
+        var pago = button?.CommandParameter as Pagos;
+
+        if (pago != null)
+        {
+            bool confirmar = await DisplayAlert("Eliminar", $"¿Eliminar el pago #{pago.Id}?", "Sí", "No");
+            if (confirmar)
+            {
+                try
+                {
+                    await _pagoService.EliminarPagoAsync(pago.Id);
+                    await CargarPagos();
+                    await DisplayAlert("Éxito", "Pago eliminado", "OK");
+                }
+                catch (Exception ex)
+                {
+                    await DisplayAlert("Error", ex.Message, "OK");
+                }
+            }
+        }
+    }
+
+
 
     private async void OnAgregarPagoClicked(object sender, EventArgs e)
     {
         await Shell.Current.GoToAsync("///PagoFormularioPage");
     }
+
+    private async void OnPagoSeleccionado(object sender, EventArgs e)
+    {
+        if (sender is Frame frame && frame.BindingContext is Pagos pago)
+        {
+            await Shell.Current.GoToAsync($"PagoFormularioPage?PagoSeleccionado={System.Text.Json.JsonSerializer.Serialize(pago)}");
+        }
+    }
+
 }

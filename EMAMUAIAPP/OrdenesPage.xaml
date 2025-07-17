@@ -12,27 +12,39 @@
         <Button Text="Agregar Nueva Orden"
                 Clicked="OnAgregarOrdenClicked" />
 
-        <CollectionView x:Name="OrdenesCollectionView">
-            <CollectionView.ItemTemplate>
-                <DataTemplate>
-                    <Frame BorderColor="Gray" Padding="10" Margin="5">
-                        <VerticalStackLayout>
-                            <Label Text="{Binding NombreEquipo}" FontAttributes="Bold" />
-                            <Label Text="{Binding CodigoEquipo}" />
-                            <Label Text="{Binding TipoMantenimiento}" />
-                            <Label Text="{Binding Estado}" />
-                            <Label Text="{Binding FechaIngreso, StringFormat='Ingreso: {0:dd/MM/yyyy}'}" />
-                            <Label Text="{Binding FechaEntrega, StringFormat='Entrega: {0:dd/MM/yyyy}'}" />
-                            <Label Text="{Binding DescripcionProblema}" />
-                            <Label Text="{Binding Observaciones}" />
-                            <HorizontalStackLayout>
-                                <Button Text="Editar" Clicked="OnEditarOrdenClicked" CommandParameter="{Binding}" />
-                                <Button Text="Eliminar" Clicked="OnEliminarOrdenClicked" CommandParameter="{Binding}" BackgroundColor="Red" TextColor="White" />
-                            </HorizontalStackLayout>
-                        </VerticalStackLayout>
-                    </Frame>
-                </DataTemplate>
-            </CollectionView.ItemTemplate>
-        </CollectionView>
+        <ScrollView>
+            <CollectionView x:Name="OrdenesCollectionView"
+                VerticalOptions="FillAndExpand">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Frame BorderColor="Gray" Padding="10" Margin="20">
+                            <VerticalStackLayout BackgroundColor="Black">
+                                <Label Text="{Binding NombreEquipo}" FontAttributes="Bold" TextColor="White" />
+                                <Label Text="{Binding CodigoEquipo}" TextColor="White" />
+                                <Label Text="{Binding TipoMantenimiento}" TextColor="White" />
+                                <Label Text="{Binding Estado}" TextColor="White" />
+                                <Label Text="{Binding FechaIngreso, StringFormat='Ingreso: {0:dd/MM/yyyy}'}" TextColor="White" />
+                                <Label Text="{Binding FechaEntrega, StringFormat='Entrega: {0:dd/MM/yyyy}'}" TextColor="White" />
+                                <Label Text="{Binding DescripcionProblema}" TextColor="White" />
+                                <Label Text="{Binding Observaciones}" TextColor="White" />
+                                <HorizontalStackLayout Spacing="10" Margin="0,10,0,0">
+                                    <Button Text="Editar" 
+                                Clicked="OnEditarOrdenClicked" 
+                                CommandParameter="{Binding}"
+                                BackgroundColor="CadetBlue" 
+                                TextColor="White"/>
+                                    <Button Text="Eliminar" 
+                                Clicked="OnEliminarOrdenClicked"
+                                CommandParameter="{Binding}" 
+                                BackgroundColor="Red" 
+                                TextColor="White" />
+                                </HorizontalStackLayout>
+                            </VerticalStackLayout>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </ScrollView>
+
     </VerticalStackLayout>
 </ContentPage>

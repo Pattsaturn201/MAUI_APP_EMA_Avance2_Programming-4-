@@ -4,36 +4,51 @@
              x:Class="EMAMUAIAPP.PagosPage"
              Title="Pagos">
 
-    <VerticalStackLayout Padding="20" Spacing="15">
-        <Label Text="Historial de Pagos"
-               FontSize="24"
-               HorizontalOptions="Center" />
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="15">
+            <Label Text="Historial de Pagos"
+                   FontSize="24"
+                   HorizontalOptions="Center" />
 
-        <SearchBar Placeholder="Buscar pagos..."
-           x:Name="BusquedaPagosBar"
-           TextChanged="OnBusquedaPagosChanged" />
+            <SearchBar Placeholder="Buscar pagos..."
+                       x:Name="BusquedaPagosBar"
+                       TextChanged="OnBusquedaPagosChanged" />
 
+            <Button Text="Registrar Pago"
+                    Clicked="OnAgregarPagoClicked" />
 
-        <Button Text="Registrar Pago"
-                Clicked="OnAgregarPagoClicked" />
+            <CollectionView x:Name="PagosCollectionView"
+                            SelectionMode="Single"
+                            SelectionChanged="OnPagoSeleccionado">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Frame BorderColor="LightGray" Padding="10" Margin="5">
+                            <VerticalStackLayout Spacing="5">
+                                <Label Text="{Binding VentaId, StringFormat='Venta ID: {0}'}" />
+                                <Label Text="{Binding Monto, StringFormat='Monto: {0:C}'}" />
+                                <Label Text="{Binding FechaPago, StringFormat='Fecha: {0:dd/MM/yyyy}'}" />
+                                <Label Text="{Binding EntidadExterna, StringFormat='Entidad: {0}'}" />
+                                <Label Text="{Binding MetodoPago, StringFormat='Método: {0}'}" />
+                                <Label Text="{Binding DetallesCuenta, StringFormat='Cuenta: {0}'}" />
 
-        <CollectionView x:Name="PagosCollectionView">
-            <CollectionView.ItemTemplate>
-                <DataTemplate>
-                    <Frame BorderColor="LightGray" Padding="10" Margin="5">
-                        <VerticalStackLayout Spacing="5">
-                            <Label Text="Pago #" FontAttributes="Bold" />
-                            <Label Text="{Binding VentaId, StringFormat='Venta ID: {0}'}" />
-                            <Label Text="{Binding Monto, StringFormat='Monto: {0:C}'}" />
-                            <Label Text="{Binding FechaPago, StringFormat='Fecha: {0:dd/MM/yyyy}'}" />
-                            <Label Text="{Binding EntidadExterna, StringFormat='Entidad: {0}'}" />
-                            <Label Text="{Binding MetodoPago, StringFormat='Método: {0}'}" />
-                            <Label Text="{Binding DetallesCuenta, StringFormat='Cuenta: {0}'}" />
-                        </VerticalStackLayout>
-                    </Frame>
-                </DataTemplate>
-            </CollectionView.ItemTemplate>
-        </CollectionView>
+                                <HorizontalStackLayout Spacing="10" Margin="0,10,0,0">
+                                    <Button Text="Editar"
+                                            Clicked="OnEditarPagoClicked"
+                                            TextColor="White"
+                                            BackgroundColor="Green"
+                                            CommandParameter="{Binding}" />
+                                    <Button Text="Eliminar"
+                                            Clicked="OnEliminarPagoClicked"
+                                            TextColor="White"
+                                            Background="Red"
+                                            CommandParameter="{Binding}" />
+                                </HorizontalStackLayout>
+                            </VerticalStackLayout>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
 
-    </VerticalStackLayout>
+        </VerticalStackLayout>
+    </ScrollView>
 </ContentPage>

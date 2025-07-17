@@ -13,6 +13,8 @@
 
             <Button Text="Guardar Pago" 
                     Clicked="OnGuardarClicked" />
+            <Button Text="Cancelar"
+                    Clicked="OnCancelarClicked" />
         </VerticalStackLayout>
     </ScrollView>
 </ContentPage>

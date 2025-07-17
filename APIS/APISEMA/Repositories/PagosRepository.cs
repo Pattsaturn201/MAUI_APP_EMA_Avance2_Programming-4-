@@ -52,11 +52,13 @@ namespace APISEMA.Repositories
             if (existing == null)
                 return false;
 
-            // Ajusta las propiedades según tu modelo
-            // existing.ClienteId = pago.ClienteId;
-            // existing.Monto = pago.Monto;
-            // existing.FechaPago = pago.FechaPago;
-            // existing.Metodo = pago.Metodo;
+            existing.VentaId = pago.VentaId;
+            existing.Monto = pago.Monto;
+            existing.FechaPago = pago.FechaPago;
+            existing.EntidadExterna = pago.EntidadExterna;
+            existing.MetodoPago = pago.MetodoPago;
+            existing.DetallesCuenta = pago.DetallesCuenta;
+
             return true;
         }
 

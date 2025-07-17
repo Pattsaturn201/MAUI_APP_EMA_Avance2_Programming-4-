@@ -53,5 +53,7 @@ namespace EMAMUAIAPP.Services
             var response = await _httpClient.DeleteAsync($"{_baseUrl}/Pagos/{id}");
             response.EnsureSuccessStatusCode();
         }
+
+
     }
 }

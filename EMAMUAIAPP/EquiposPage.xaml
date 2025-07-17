@@ -2,54 +2,77 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="EMAMUAIAPP.EquiposPage"
-             Title="Equipos">
+             Title="Equipos"
+             BackgroundColor="#F4F4F4">
 
     <Grid RowDefinitions="Auto, Auto, Auto, *" Padding="20" RowSpacing="15">
 
         <!-- Título -->
         <Label Text="Equipos Registrados"
                FontSize="24"
+               FontAttributes="Bold"
+               TextColor="#2C3E50"
                HorizontalOptions="Center"
                Grid.Row="0" />
 
+        <!-- Búsqueda -->
         <Entry x:Name="BusquedaEntry"
                Placeholder="Buscar por nombre, marca, modelo o serial"
-               TextChanged="OnBusquedaTextChanged"
-               Grid.Row="1" />
+               BackgroundColor="White"
+               PlaceholderColor="#B0BEC5"
+               TextColor="#37474F"
+               Grid.Row="1"
+               HeightRequest="40"
+               Margin="0,5"
+               TextChanged="OnBusquedaTextChanged" />
 
-
-        <!-- Botón fijo arriba -->
+        <!-- Botón Agregar -->
         <Button Text="Agregar Equipo"
                 Clicked="OnAgregarEquipoClicked"
-                BackgroundColor="#2196F3"
+                BackgroundColor="#1976D2"
                 TextColor="White"
+                CornerRadius="6"
+                FontAttributes="Bold"
+                HeightRequest="45"
                 Grid.Row="2" />
 
-        <!-- ScrollView solo para los equipos -->
+        <!-- Lista de Equipos -->
         <ScrollView Grid.Row="3">
             <VerticalStackLayout Spacing="10">
                 <CollectionView x:Name="EquiposCollectionView"
                                 ItemsLayout="VerticalList">
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
-                            <Frame BorderColor="LightGray" Padding="10" Margin="5">
-                                <VerticalStackLayout Spacing="5">
-                                    <Label Text="{Binding Nombre}" FontAttributes="Bold" FontSize="18" />
-                                    <Label Text="{Binding Marca}" />
-                                    <Label Text="{Binding Modelo}" />
-                                    <Label Text="{Binding Serial}" />
-                                    <Label Text="{Binding FechaAdquisicion, StringFormat='Adquirido: {0:dd/MM/yyyy}'}" />
-                                    <Label Text="{Binding FechaBaja, StringFormat='Baja: {0:dd/MM/yyyy}'}" />
+                            <Frame BorderColor="#CFD8DC" 
+                                   BackgroundColor="White" 
+                                   CornerRadius="8"
+                                   Padding="15" 
+                                   Margin="5,5,5,10"
+                                   HasShadow="True">
+                                <VerticalStackLayout Spacing="4">
+                                    <Label Text="{Binding Nombre}" 
+                                           FontAttributes="Bold" 
+                                           FontSize="18" 
+                                           TextColor="#263238" />
+                                    <Label Text="{Binding Marca}" TextColor="#546E7A" />
+                                    <Label Text="{Binding Modelo}" TextColor="#546E7A" />
+                                    <Label Text="{Binding Serial}" TextColor="#546E7A" />
+                                    <Label Text="{Binding FechaAdquisicion, StringFormat='Adquirido: {0:dd/MM/yyyy}'}"
+                                           TextColor="#78909C" />
+                                    <Label Text="{Binding FechaBaja, StringFormat='Baja: {0:dd/MM/yyyy}'}"
+                                           TextColor="#FF6F00" />
 
                                     <HorizontalStackLayout Spacing="10" Margin="0,10,0,0">
                                         <Button Text="Editar"
                                                 Clicked="OnEditarEquipoClicked"
                                                 BackgroundColor="#4CAF50"
-                                                TextColor="White"/>
+                                                TextColor="White"
+                                                CornerRadius="5" />
                                         <Button Text="Eliminar"
                                                 Clicked="OnEliminarEquipoClicked"
-                                                BackgroundColor="#F44336"
-                                                TextColor="White"/>
+                                                BackgroundColor="#E53935"
+                                                TextColor="White"
+                                                CornerRadius="5" />
                                     </HorizontalStackLayout>
                                 </VerticalStackLayout>
                             </Frame>

@@ -6,69 +6,84 @@
              BackgroundColor="LightGoldenrodYellow">
 
     <ScrollView>
-        <VerticalStackLayout Padding="30" Spacing="25" VerticalOptions="Center">
+        <VerticalStackLayout Padding="30" Spacing="30" VerticalOptions="CenterAndExpand">
 
-            <Frame Padding="15" BackgroundColor="White" CornerRadius="20" HasShadow="True">
-                <VerticalStackLayout Spacing="15">
+            <!-- Tarjeta de bienvenida -->
+            <Frame Padding="20"
+                   BackgroundColor="White"
+                   CornerRadius="20"
+                   HasShadow="True"
+                   BorderColor="#ccc">
+
+                <VerticalStackLayout Spacing="20" HorizontalOptions="Center">
                     <Image
-                        Source="engranaje.png"
-                        HeightRequest="150"
-                        Aspect="AspectFit"
-                        HorizontalOptions="Center" />
+                        Source="ema.png"
+                        HeightRequest="240"
+                        Aspect="AspectFit" />
 
                     <Label
                         Text="E.M.A"
-                        FontSize="32"
+                        FontSize="34"
                         FontAttributes="Bold"
-                        HorizontalOptions="Center"
-                        TextColor="#333" />
+                        TextColor="#222" />
 
                     <Label
-                        Text="Bienvenido, selecciona una opción disponible:"
+                        Text="Bienvenido a nuestra aplicación. Selecciona una opción para comenzar:"
                         FontSize="18"
-                        HorizontalOptions="Center"
-                        TextColor="#555" />
+                        HorizontalTextAlignment="Center"
+                        TextColor="#555"
+                        LineBreakMode="WordWrap" />
                 </VerticalStackLayout>
             </Frame>
 
-            <VerticalStackLayout Spacing="15">
-                <Button
-                    Text="Gestión de Clientes"
-                    Clicked="OnClientesClicked"
-                    BackgroundColor="#4a90e2"
-                    TextColor="White"
-                    CornerRadius="12"
-                    FontAttributes="Bold"
-                    HeightRequest="50" />
+            <!-- Botones de navegación con sombra -->
+            <VerticalStackLayout Spacing="18">
+                <Frame HasShadow="True" Padding="0" CornerRadius="14" BackgroundColor="Transparent">
+                    <Button
+                        Text="Gestión de Clientes"
+                        Clicked="OnClientesClicked"
+                        BackgroundColor="#4a90e2"
+                        TextColor="White"
+                        FontAttributes="Bold"
+                        CornerRadius="14"
+                        HeightRequest="55" />
+                </Frame>
 
-                <Button
-                    Text="Gestión de Equipos"
-                    Clicked="OnEquiposClicked"
-                    BackgroundColor="#50e3c2"
-                    TextColor="White"
-                    CornerRadius="12"
-                    FontAttributes="Bold"
-                    HeightRequest="50" />
+                <Frame HasShadow="True" Padding="0" CornerRadius="14" BackgroundColor="Transparent">
+                    <Button
+                        Text="Gestión de Equipos"
+                        Clicked="OnEquiposClicked"
+                        BackgroundColor="#50e3c2"
+                        TextColor="White"
+                        FontAttributes="Bold"
+                        CornerRadius="14"
+                        HeightRequest="55" />
+                </Frame>
 
-                <Button
-                    Text="Gestión de Pagos"
-                    Clicked="OnPagosClicked"
-                    BackgroundColor="#f5a623"
-                    TextColor="White"
-                    CornerRadius="12"
-                    FontAttributes="Bold"
-                    HeightRequest="50" />
+                <Frame HasShadow="True" Padding="0" CornerRadius="14" BackgroundColor="Transparent">
+                    <Button
+                        Text="Gestión de Pagos"
+                        Clicked="OnPagosClicked"
+                        BackgroundColor="#f5a623"
+                        TextColor="White"
+                        FontAttributes="Bold"
+                        CornerRadius="14"
+                        HeightRequest="55" />
+                </Frame>
 
-                <Button
-                    Text="Gestión de Ordenes de Trabajo"
-                    Clicked="OnOrdenesClicked"
-                    BackgroundColor="#d0021b"
-                    TextColor="White"
-                    CornerRadius="12"
-                    FontAttributes="Bold"
-                    HeightRequest="50" />
+                <Frame HasShadow="True" Padding="0" CornerRadius="14" BackgroundColor="Transparent">
+                    <Button
+                        Text="Gestión de Órdenes de Trabajo"
+                        Clicked="OnOrdenesClicked"
+                        BackgroundColor="#d0021b"
+                        TextColor="White"
+                        FontAttributes="Bold"
+                        CornerRadius="14"
+                        HeightRequest="55" />
+                </Frame>
             </VerticalStackLayout>
 
         </VerticalStackLayout>
     </ScrollView>
 </ContentPage>
+

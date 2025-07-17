@@ -2,52 +2,67 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="EMAMUAIAPP.ClientesPage"
-             Title="Clientes">
+             Title="Clientes"
+             BackgroundColor="#F5F5F5">
 
     <Grid RowDefinitions="Auto, Auto, Auto, *" Padding="20" RowSpacing="15">
 
         <!-- Título -->
         <Label Text="Clientes Registrados"
-               FontSize="24"
+               FontSize="26"
+               TextColor="#333333"
+               FontAttributes="Bold"
                HorizontalOptions="Center"
                Grid.Row="0" />
-        
+
         <Entry x:Name="BusquedaEntry"
                Placeholder="Buscar por nombre, apellido o correo"
+               BackgroundColor="White"
+               TextColor="#333333"
+               PlaceholderColor="#888"
+               HeightRequest="40"
                TextChanged="OnBusquedaTextChanged"
                Grid.Row="1"/>
 
-        <!-- Botón pa agregar cliente -->
+        <!-- Botón para agregar cliente -->
         <Button Text="Agregar Cliente"
+                BackgroundColor="#2196F3"
+                TextColor="White"
+                CornerRadius="8"
+                HeightRequest="45"
                 Clicked="OnAgregarClienteClicked"
                 Grid.Row="2" />
 
-        <!-- Lista de clientes con scroll  -->
+        <!-- Lista de clientes con scroll -->
         <ScrollView Grid.Row="3">
             <VerticalStackLayout Spacing="10">
                 <CollectionView x:Name="ClientesCollectionView"
                                 ItemsLayout="VerticalList">
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
-                            <Frame BorderColor="LightGray" Padding="10" Margin="5">
+                            <Frame BorderColor="#DDDDDD" BackgroundColor="White" CornerRadius="10" Padding="15" Margin="5,8">
                                 <VerticalStackLayout Spacing="5">
-                                    <Label Text="{Binding NombreCompleto}" FontAttributes="Bold" FontSize="18" />
-                                    <Label Text="{Binding ApellidoCompleto}" FontAttributes="Italic" />
-                                    <Label Text="{Binding Correo}" />
-                                    <Label Text="{Binding Telefono}" />
-                                    <Label Text="{Binding Direccion}" />
-                                    <Label Text="Métodos de Pago:" FontAttributes="Bold" />
-                                    <Label Text="{Binding MetodosDePagoString}" LineBreakMode="WordWrap" />
+                                    <Label Text="{Binding NombreCompleto}" FontAttributes="Bold" FontSize="18" TextColor="#212121"/>
+                                    <Label Text="{Binding ApellidoCompleto}" FontAttributes="Italic" TextColor="#424242"/>
+                                    <Label Text="{Binding Correo}" TextColor="#424242"/>
+                                    <Label Text="{Binding Telefono}" TextColor="#424242"/>
+                                    <Label Text="{Binding Direccion}" TextColor="#424242"/>
+                                    <Label Text="Métodos de Pago:" FontAttributes="Bold" TextColor="#212121"/>
+                                    <Label Text="{Binding MetodosDePagoString}" LineBreakMode="WordWrap" TextColor="#424242"/>
 
                                     <HorizontalStackLayout Spacing="10" Margin="0,10,0,0">
                                         <Button Text="Editar"
                                                 Clicked="OnEditarClienteClicked"
-                                                BackgroundColor="#4CAF50"
-                                                TextColor="White"/>
+                                                BackgroundColor="#00796B"
+                                                TextColor="White"
+                                                CornerRadius="6"
+                                                WidthRequest="100"/>
                                         <Button Text="Eliminar"
                                                 Clicked="OnEliminarClienteClicked"
-                                                BackgroundColor="#F44336"
-                                                TextColor="White"/>
+                                                BackgroundColor="#D32F2F"
+                                                TextColor="White"
+                                                CornerRadius="6"
+                                                WidthRequest="100"/>
                                     </HorizontalStackLayout>
                                 </VerticalStackLayout>
                             </Frame>

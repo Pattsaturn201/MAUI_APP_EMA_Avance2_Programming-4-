@@ -81,5 +81,17 @@ namespace APISEMA.Repositories
             _equipos.Remove(equipo);
             return true;
         }
+
+        public List<Equipo> BuscarEquipos(string termino)
+        {
+            termino = termino.ToLower();
+            return _equipos.Where(e =>
+                e.Nombre.ToLower().Contains(termino) ||
+                e.Marca.ToLower().Contains(termino) ||
+                e.Modelo.ToLower().Contains(termino) ||
+                e.Serial.ToLower().Contains(termino)
+            ).ToList();
+        }
+
     }
 }

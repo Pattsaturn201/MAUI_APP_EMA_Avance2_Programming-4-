@@ -31,13 +31,20 @@ namespace APISEMA.Controllers
         [HttpPost]
         public ActionResult<OrdenTrabajo> Post([FromBody] OrdenTrabajo orden)
         {
-            // Validar estado si es string, o convertir si usas enum
-            if (!Enum.IsDefined(typeof(EstadoDeOrden), orden.Estado))
-                return BadRequest("El estado de la orden no es válido.");
+            try
+            {
+                if (!Enum.IsDefined(typeof(EstadoDeOrden), orden.Estado))
+                    return BadRequest("El estado de la orden no es válido.");
 
-            var nueva = _repo.Add(orden);
-            return CreatedAtAction(nameof(Get), new { id = nueva.Id }, nueva);
+                var nueva = _repo.Add(orden);
+                return CreatedAtAction(nameof(Get), new { id = nueva.Id }, nueva);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Error interno: {ex.Message}");
+            }
         }
+
 
         // PUT
         [HttpPut("{id}")]

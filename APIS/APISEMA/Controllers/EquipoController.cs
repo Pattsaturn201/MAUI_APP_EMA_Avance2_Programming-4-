@@ -59,5 +59,17 @@ namespace APISEMA.Controllers
 
             return NoContent();
         }
+
+        [HttpGet("buscar")]
+        public ActionResult<List<Equipo>> Buscar([FromQuery] string termino)
+        {
+            if (string.IsNullOrWhiteSpace(termino))
+                return BadRequest("El término de búsqueda es obligatorio.");
+
+            var resultados = _repo.BuscarEquipos(termino);
+            return Ok(resultados);
+        }
+
     }
+
 }

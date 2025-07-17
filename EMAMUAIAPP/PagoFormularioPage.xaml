@@ -1,0 +1,18 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="EMAMUAIAPP.PagoFormularioPage">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="15">
+            <Entry x:Name="VentaIdEntry" Placeholder="ID de la Venta" Keyboard="Numeric" />
+            <Entry x:Name="MontoEntry" Placeholder="Monto" Keyboard="Numeric" />
+            <DatePicker x:Name="FechaPagoPicker" />
+            <Entry x:Name="EntidadExternaEntry" Placeholder="Entidad Externa" />
+            <Entry x:Name="MetodoPagoEntry" Placeholder="Método de Pago" />
+            <Entry x:Name="DetallesCuentaEntry" Placeholder="Detalles de Cuenta" />
+
+            <Button Text="Guardar Pago" 
+                    Clicked="OnGuardarClicked" />
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

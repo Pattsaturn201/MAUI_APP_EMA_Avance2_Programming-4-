@@ -1,34 +1,59 @@
+using EMAMUAIAPP.Models;
+using EMAMUAIAPP.Services;
 using System.Collections.ObjectModel;
 
-namespace EMAMUAIAPP
+namespace EMAMUAIAPP;
+
+public partial class PagosPage : ContentPage
 {
-    public partial class PagosPage : ContentPage
+    public ObservableCollection<Pagos> Pagos { get; set; } = new();
+    private List<Pagos> TodosLosPagos = new();
+    private PagosServices _pagoService = new();
+    
+
+    public PagosPage()
     {
-        public ObservableCollection<Pago> Pagos { get; set; }
-
-        public PagosPage()
-        {
-            InitializeComponent();
-
-            Pagos = new ObservableCollection<Pago>
-            {
-                new Pago { Cliente = "Juan Pérez", Monto = "$150.00", Fecha = "06/06/2025" },
-                new Pago { Cliente = "Ana Gómez", Monto = "$200.00", Fecha = "05/06/2025" }
-            };
-
-            PagosCollectionView.ItemsSource = Pagos;
-        }
-
-        private async void OnAgregarPagoClicked(object sender, EventArgs e)
-        {
-            await DisplayAlert("Registrar Pago", "Aquí se abriría un formulario para registrar un nuevo pago.", "OK");
-        }
+        InitializeComponent();
     }
 
-    public class Pago
+    protected override async void OnAppearing()
     {
-        public string Cliente { get; set; }
-        public string Monto { get; set; }
-        public string Fecha { get; set; }
+        base.OnAppearing();
+        await CargarPagos();
+    }
+
+    private async Task CargarPagos()
+    {
+        var pagos = await _pagoService.ObtenerPagosAsync();
+
+        TodosLosPagos = pagos; 
+        Pagos.Clear();
+
+        foreach (var pago in pagos)
+            Pagos.Add(pago);
+
+        PagosCollectionView.ItemsSource = Pagos;
+    }
+
+    private void OnBusquedaPagosChanged(object sender, TextChangedEventArgs e)
+    {
+        var textoBusqueda = e.NewTextValue?.ToLower() ?? "";
+
+        var filtrados = TodosLosPagos.Where(p =>
+            p.EntidadExterna.ToLower().Contains(textoBusqueda) ||
+            p.MetodoPago.ToLower().Contains(textoBusqueda) ||
+            p.VentaId.ToString().Contains(textoBusqueda) ||
+            p.DetallesCuenta.ToLower().Contains(textoBusqueda)
+        ).ToList();
+
+        Pagos.Clear();
+        foreach (var pago in filtrados)
+            Pagos.Add(pago);
+    }
+
+
+    private async void OnAgregarPagoClicked(object sender, EventArgs e)
+    {
+        await Shell.Current.GoToAsync("///PagoFormularioPage");
     }
 }

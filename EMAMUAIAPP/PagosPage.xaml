@@ -9,6 +9,11 @@
                FontSize="24"
                HorizontalOptions="Center" />
 
+        <SearchBar Placeholder="Buscar pagos..."
+           x:Name="BusquedaPagosBar"
+           TextChanged="OnBusquedaPagosChanged" />
+
+
         <Button Text="Registrar Pago"
                 Clicked="OnAgregarPagoClicked" />
 
@@ -16,14 +21,19 @@
             <CollectionView.ItemTemplate>
                 <DataTemplate>
                     <Frame BorderColor="LightGray" Padding="10" Margin="5">
-                        <VerticalStackLayout>
-                            <Label Text="{Binding Cliente}" FontAttributes="Bold" />
-                            <Label Text="{Binding Monto}" />
-                            <Label Text="{Binding Fecha}" FontSize="10" TextColor="Gray" />
+                        <VerticalStackLayout Spacing="5">
+                            <Label Text="Pago #" FontAttributes="Bold" />
+                            <Label Text="{Binding VentaId, StringFormat='Venta ID: {0}'}" />
+                            <Label Text="{Binding Monto, StringFormat='Monto: {0:C}'}" />
+                            <Label Text="{Binding FechaPago, StringFormat='Fecha: {0:dd/MM/yyyy}'}" />
+                            <Label Text="{Binding EntidadExterna, StringFormat='Entidad: {0}'}" />
+                            <Label Text="{Binding MetodoPago, StringFormat='Método: {0}'}" />
+                            <Label Text="{Binding DetallesCuenta, StringFormat='Cuenta: {0}'}" />
                         </VerticalStackLayout>
                     </Frame>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
+
     </VerticalStackLayout>
 </ContentPage>

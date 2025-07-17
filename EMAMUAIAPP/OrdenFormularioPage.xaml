@@ -1,0 +1,29 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="EMAMUAIAPP.OrdenFormularioPage"
+             Title="Formulario de Orden de Trabajo">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="15">
+            <Entry x:Name="NombreEquipoEntry" Placeholder="Nombre del Equipo" />
+            <Entry x:Name="CodigoEquipoEntry" Placeholder="Código del Equipo" />
+            <Entry x:Name="TipoMantenimientoEntry" Placeholder="Tipo de Mantenimiento" />
+            <DatePicker x:Name="FechaIngresoPicker" />
+            <DatePicker x:Name="FechaEntregaPicker" />
+            <Editor x:Name="DescripcionProblemaEditor" Placeholder="Descripción del Problema" AutoSize="TextChanges" />
+            <Editor x:Name="ObservacionesEditor" Placeholder="Observaciones" AutoSize="TextChanges" />
+            <Picker x:Name="EstadoPicker" Title="Estado">
+                <Picker.ItemsSource>
+                    <x:Array Type="{x:Type x:String}">
+                        <x:String>Pendiente</x:String>
+                        <x:String>EnProceso</x:String>
+                        <x:String>Finalizado</x:String>
+                        <x:String>Cancelado</x:String>
+                    </x:Array>
+                </Picker.ItemsSource>
+            </Picker>
+
+            <Button Text="Guardar" Clicked="OnGuardarClicked" />
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

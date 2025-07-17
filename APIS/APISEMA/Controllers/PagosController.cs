@@ -35,6 +35,7 @@ namespace APISEMA.Controllers
             return CreatedAtAction(nameof(Get), new { id = nuevo.Id }, nuevo);
         }
 
+
         // PUT
         [HttpPut("{id}")]
         public IActionResult Put(int id, [FromBody] Pagos pago)

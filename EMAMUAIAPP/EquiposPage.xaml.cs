@@ -63,5 +63,30 @@ namespace EMAMUAIAPP
                 }
             }
         }
+
+        private async void OnBusquedaTextChanged(object sender, TextChangedEventArgs e)
+        {
+            string termino = e.NewTextValue;
+
+            if (string.IsNullOrWhiteSpace(termino))
+            {
+                CargarEquipos();
+            }
+            else
+            {
+                try
+                {
+                    var resultados = await _equiposService.BuscarEquiposAsync(termino);
+                    Equipos.Clear();
+                    foreach (var equipo in resultados)
+                        Equipos.Add(equipo);
+                }
+                catch (Exception ex)
+                {
+                    await DisplayAlert("Error", $"No se pudo buscar equipos: {ex.Message}", "OK");
+                }
+            }
+        }
+
     }
 }

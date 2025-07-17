@@ -1,10 +1,15 @@
-﻿namespace EMAMUAIAPP.Models
+﻿using System.Text.Json.Serialization;
+
+namespace EMAMUAIAPP.Models
 {
+
+    [JsonConverter(typeof(JsonStringEnumConverter))]
+
     public enum EstadoDeOrden
     {
         Pendiente,
         EnProceso,
-        Completado,
+        Finalizado,
         Cancelado
     }
 }

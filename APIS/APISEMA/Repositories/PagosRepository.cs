@@ -15,20 +15,14 @@ namespace APISEMA.Repositories
             _pagos.Add(new Pagos
             {
                 Id = _nextId++,
-                // ClienteId = 1,
-                // Monto = 100.00m,
-                // FechaPago = DateTime.Now.AddDays(-1),
-                // Metodo = "Efectivo"
+                VentaId = 1,
+                Monto = 150.00m,
+                FechaPago = DateTime.Now.AddDays(-1),
+                EntidadExterna = "Banco Pichincha",
+                MetodoPago = "Transferencia",
+                DetallesCuenta = "Cuenta 123456"
             });
 
-            _pagos.Add(new Pagos
-            {
-                Id = _nextId++,
-                // ClienteId = 2,
-                // Monto = 250.00m,
-                // FechaPago = DateTime.Now.AddDays(-1),
-                // Metodo = "Transferencia"
-            });
         }
 
         // Obtener todos los pagos

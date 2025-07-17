@@ -1,10 +1,15 @@
-﻿namespace APISEMA.Models
+﻿using System.Text.Json.Serialization;
+
+namespace APISEMA.Models
 {
+
+    [JsonConverter(typeof(JsonStringEnumConverter))]
+
     public enum EstadoDeOrden
     {
         Pendiente,
         EnProceso,
-        Completado,
+        Finalizado,
         Cancelado
     }
 }
